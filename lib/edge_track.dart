@@ -28,10 +28,12 @@ class _EdgeTrackState extends State<EdgeTrack> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text('Edge Track'),
-          leading: IconButton(
-              icon: const Icon(Icons.arrow_back),
-              onPressed: () => context.go('/'))),
+        title: const Text('Edge Track'),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => context.go('/'),
+        ),
+      ),
       body: Center(
         child: GestureDetector(
           onPanUpdate: (DragUpdateDetails e) {

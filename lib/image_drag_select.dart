@@ -10,10 +10,12 @@ class ImageDragSelect extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text('Image Drag Select'),
-          leading: IconButton(
-              icon: const Icon(Icons.arrow_back),
-              onPressed: () => context.go('/'))),
+        title: const Text('Image Drag Select'),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => context.go('/'),
+        ),
+      ),
       body: DraggableCover(
           backgroundChild: Image.asset('assets/yuno-400x315.jpg')),
     );

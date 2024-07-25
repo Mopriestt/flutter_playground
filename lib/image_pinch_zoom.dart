@@ -41,8 +41,9 @@ class ImagePinchZoomState extends State<ImagePinchZoom> {
         appBar: AppBar(
           title: const Text('Blank'),
           leading: IconButton(
-              icon: const Icon(Icons.arrow_back),
-              onPressed: () => context.go('/')),
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () => context.go('/'),
+          ),
         ),
         body: Center(
           child: Listener(

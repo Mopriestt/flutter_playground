@@ -15,8 +15,9 @@ class _BlankState extends State<Blank> {
       appBar: AppBar(
         title: const Text('Blank'),
         leading: IconButton(
-            icon: const Icon(Icons.arrow_back),
-            onPressed: () => context.go('/')),
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => context.go('/'),
+        ),
       ),
     );
   }
