@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_playground/edge_track.dart';
+import 'package:flutter_playground/image_drag_select.dart';
 import 'package:flutter_playground/image_pinch_zoom.dart';
 import 'package:go_router/go_router.dart';
 
@@ -34,6 +35,11 @@ final GoRouter _router = GoRouter(
           path: 'imagepinchzoom',
           builder: (BuildContext context, GoRouterState state) {
             return const ImagePinchZoom();
+          },
+        ),        GoRoute(
+          path: 'imagedragselect',
+          builder: (BuildContext context, GoRouterState state) {
+            return const ImageDragSelect();
           },
         ),
         GoRoute(
@@ -71,8 +77,9 @@ class _HomePageState extends State<_HomePage> {
         child: ListView(children: [
           const DrawerHeader(child: Text('Demo List')),
           _drawerItem('Edge Track'),
-          _drawerItem('Blank'),
           _drawerItem('Image Pinch Zoom'),
+          _drawerItem('Image Drag Select'),
+          _drawerItem('Blank'),
         ]),
       ),
       body: Center(child: Image.asset('assets/frieren-600x945.jpg')),
