@@ -1,28 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_playground/edge_track.dart';
+import 'package:flutter_playground/home/splash_screen.dart';
 import 'package:flutter_playground/image_drag_select.dart';
 import 'package:flutter_playground/image_pinch_zoom.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'blank.dart';
-
-void main() {
-  runApp(MaterialApp.router(
-    title: 'Flutter Playground',
-    theme: ThemeData(
-      colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      useMaterial3: true,
-    ),
-    routerConfig: _router,
-  ));
-}
+import 'home/home.dart';
 
 final GoRouter _router = GoRouter(
   routes: <RouteBase>[
     GoRoute(
       path: '/',
       builder: (BuildContext context, GoRouterState state) {
-        return const _HomePage();
+        return const HomePage();
       },
       routes: <RouteBase>[
         GoRoute(
@@ -36,7 +29,8 @@ final GoRouter _router = GoRouter(
           builder: (BuildContext context, GoRouterState state) {
             return const ImagePinchZoom();
           },
-        ),        GoRoute(
+        ),
+        GoRoute(
           path: 'imagedragselect',
           builder: (BuildContext context, GoRouterState state) {
             return const ImageDragSelect();
@@ -53,36 +47,20 @@ final GoRouter _router = GoRouter(
   ],
 );
 
-class _HomePage extends StatefulWidget {
-  const _HomePage();
-
-  @override
-  State<_HomePage> createState() => _HomePageState();
+Stream<InheritedProvider> _dependencies() async* {
+  yield Provider.value(value: SharedPreferences.getInstance());
 }
 
-class _HomePageState extends State<_HomePage> {
-  ListTile _drawerItem(String name) => ListTile(
-        title: Text(name),
-        onTap: () => context.go('/${name.replaceAll(' ', '').toLowerCase()}'),
-      );
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Flutter Playground'),
-        backgroundColor: Colors.blueAccent,
-      ),
-      drawer: Drawer(
-        child: ListView(children: [
-          const DrawerHeader(child: Text('Demo List')),
-          _drawerItem('Edge Track'),
-          _drawerItem('Image Pinch Zoom'),
-          _drawerItem('Image Drag Select'),
-          _drawerItem('Blank'),
-        ]),
-      ),
-      body: Center(child: Image.asset('assets/frieren-600x945.jpg')),
-    );
-  }
+  runApp(const MaterialApp(home: SplashScreen()));
+  runApp(MultiProvider(
+    providers: await _dependencies().toList(),
+    child: MaterialApp.router(
+      title: 'Flutter Playground',
+      theme: ThemeData(useMaterial3: true),
+      routerConfig: _router,
+    ),
+  ));
 }
