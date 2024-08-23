@@ -55,7 +55,7 @@ final GoRouter _router = GoRouter(
 );
 
 Stream<InheritedProvider> _dependencies() async* {
-  yield Provider.value(value: SharedPreferences.getInstance());
+  yield Provider.value(value: await SharedPreferences.getInstance());
 }
 
 void main() async {
