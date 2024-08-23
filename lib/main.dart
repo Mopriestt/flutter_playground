@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_playground/arc_color_board.dart';
 import 'package:flutter_playground/edge_track.dart';
 import 'package:flutter_playground/home/splash_screen.dart';
 import 'package:flutter_playground/image_drag_select.dart';
@@ -34,6 +35,12 @@ final GoRouter _router = GoRouter(
           path: 'imagedragselect',
           builder: (BuildContext context, GoRouterState state) {
             return const ImageDragSelect();
+          },
+        ),
+        GoRoute(
+          path: 'arccolorboard',
+          builder: (BuildContext context, GoRouterState state) {
+            return const ArcColorBoard();
           },
         ),
         GoRoute(

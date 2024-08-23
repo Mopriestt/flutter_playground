@@ -27,6 +27,7 @@ class _HomePageState extends State<HomePage> {
           _drawerItem('Edge Track'),
           _drawerItem('Image Pinch Zoom'),
           _drawerItem('Image Drag Select'),
+          _drawerItem('Arc Color Board'),
           _drawerItem('Blank'),
         ]),
       ),
